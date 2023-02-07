@@ -1,0 +1,21 @@
+version: "2"
+
+services:
+  pt:
+    build: .
+    container_name: "pt"
+    restart: always
+
+    command:
+      - "--hosts=ya.ru,google.com,youtube.com,192.168.1.1"
+      - "--store-file=/srv/var/pt.db"
+      - "--debug=true"
+
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "5"
+
+    volumes:
+      - ./var:/srv/var
